@@ -1,3 +1,5 @@
+import Registration from "./Page/Registration"
+
  
 
 function App() {
@@ -5,7 +7,7 @@ function App() {
 
   return (
     <>
-     
+     <Registration/>
     </>
   )
 }
