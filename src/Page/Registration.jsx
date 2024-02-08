@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/login-animate.gif";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -8,6 +10,10 @@ const Registration = () => {
   const [emailer, setEmailer] = useState("");
   const [nameer, setnameer] = useState("");
   const [passworder, setpasworder] = useState("");
+ 
+  const [show,setshow]=useState(false);
+
+
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -75,15 +81,27 @@ const Registration = () => {
                 <p className="font-inter text-red-700">{nameer}</p>
               </div>
 
-              <div>
-                <p className="font-inter ml-2 mt-6">Password</p>
+              <div className="relative">
+                <p className="font-inter ml-2 mt-6 ">Password</p>
                 <input
                   onChange={handlepasswoord}
-                  className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
+                  className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] relative "
                   placeholder="Enter your Password "
-                  type="password"
+                  type={show ? 'text' :'password'}
                 />
+               
                 <p className="font-inter text-red-700">{passworder}</p>
+
+              {
+                show ? <FaEye onClick={()=> setshow(!show)} className="absolute top-12 right-4 "/>  
+                :<FaEyeSlash onClick={()=> setshow(!show)} className="absolute top-12 right-4"/>
+              }
+
+
+               
+
+
+
               </div>
 
               <div
