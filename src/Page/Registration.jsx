@@ -1,40 +1,44 @@
 import React, { useState } from "react";
-import logo from "../assets/regi.png";
+import logo from "../assets/login-animate.gif";
 const Registration = () => {
-    const [email,setEmail]=useState('');
-    const [name,setName]=useState('');
-    const [password,setPassword]=useState('');
-    
-    const [emailer, setEmailer]=useState('');
-    const [nameer, setnameer]=useState('');
-    const [passworder, setpasworder]=useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
+  const [emailer, setEmailer] = useState("");
+  const [nameer, setnameer] = useState("");
+  const [passworder, setpasworder] = useState("");
 
-    const handleEmail=(e)=>{
-      setEmail(e.target.value);
-      setEmailer('')
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setEmailer("");
+  };
+
+  const handlname = (e) => {
+    setName(e.target.value);
+    setnameer("");
+  };
+  const handlepasswoord = (e) => {
+    setPassword(e.target.value);
+    setpasworder("");
+  };
+
+  const handlesubmit = () => {
+    if (!email) {
+      setEmailer("please enter your email");
+    } else {
+      if(! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+        setEmailer("please enter your valid email")
+      }
     }
-
-    const handlname=(e)=>{
-        setName(e.target.value);;
-        setnameer('');
-      }
-      const handlepasswoord=(e)=>{
-        setPassword(e.target.value);
-        setpasworder('')
-      }
-
-      const handlesubmit =()=>{
-        if(!email){
-            setEmailer('please enter your email');
-        }
-        if(!name){
-            setnameer('please enter your name')
-        }
-        if(!password){
-            setpasworder('please enter your password')
-        }
-      }
+    if (!name) {
+      setnameer("please enter your name");
+    }
+    if (!password) {
+      setpasworder("please enter your password");
+    }
+    
+  };
 
   return (
     <div>
@@ -51,16 +55,19 @@ const Registration = () => {
             <div className="mt-6 font-semibold text-base text-[#222]">
               <div>
                 <p className="font-inter ml-2">Email</p>
-                <input onChange={handleEmail}
+                <input
+                  onChange={handleEmail}
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
-                  placeholder="Enter your Email " type="text"
+                  placeholder="Enter your Email "
+                  type="text"
                 />
                 <p className="font-inter text-red-700">{emailer}</p>
               </div>
 
               <div>
                 <p className="font-inter ml-2 mt-6">Full Name</p>
-                <input onChange={handlname}
+                <input
+                  onChange={handlname}
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Enter your Password "
                   type="text"
@@ -70,7 +77,8 @@ const Registration = () => {
 
               <div>
                 <p className="font-inter ml-2 mt-6">Password</p>
-                <input onChange={handlepasswoord}
+                <input
+                  onChange={handlepasswoord}
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Enter your Password "
                   type="password"
@@ -78,7 +86,10 @@ const Registration = () => {
                 <p className="font-inter text-red-700">{passworder}</p>
               </div>
 
-              <div onClick={handlesubmit} className="font-inter  text-2xl font-semibold bg-[#32375C] text-white py-5 text-center rounded-[86px] mt-6 cursor-pointer">
+              <div
+                onClick={handlesubmit}
+                className="font-inter  text-2xl font-semibold bg-[#32375C] text-white py-5 text-center rounded-[86px] mt-6 cursor-pointer"
+              >
                 Sign up
               </div>
               <p className="text-center font-inter mt-6 text-[#03014C] text-base font-normal not-italic">
