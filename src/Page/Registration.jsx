@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import logo from "../assets/login-animate.gif";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -11,8 +15,8 @@ const Registration = () => {
   const [emailer, setEmailer] = useState("");
   const [nameer, setnameer] = useState("");
   const [passworder, setpasworder] = useState("");
- 
-  const [show,setshow]=useState(false);
+
+  const [show, setshow] = useState(false);
 
   const auth = getAuth();
 
@@ -34,8 +38,8 @@ const Registration = () => {
     if (!email) {
       setEmailer("please enter your email");
     } else {
-      if(! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
-        setEmailer("please enter your valid email")
+      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        setEmailer("please enter your valid email");
       }
     }
     if (!name) {
@@ -44,20 +48,25 @@ const Registration = () => {
     if (!password) {
       setpasworder("please enter your password");
     }
-    if(email && password && name && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
-    
+    if (
+      email &&
+      password &&
+      name &&
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    ) {
       createUserWithEmailAndPassword(auth, email, password)
-      .then(()=>{
-        console.log('regi done');
-      })
-      .catch((error)=>{
-        if(error.code.includes('auth/email-already-in-use')){
-          setEmailer('This Email All Redy Used');
-        }
-      
-      })
+        .then(() => {
+          console.log("regi done");
+          sendEmailVerification(auth.currentUser).then(() => {
+            console.log('veify your account');
+          });
+        })
+        .catch((error) => {
+          if (error.code.includes("auth/email-already-in-use")) {
+            setEmailer("This Email All Redy Used");
+          }
+        });
     }
-    
   };
 
   return (
@@ -101,21 +110,22 @@ const Registration = () => {
                   onChange={handlepasswoord}
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] relative "
                   placeholder="Enter your Password "
-                  type={show ? 'text' :'password'}
+                  type={show ? "text" : "password"}
                 />
-               
+
                 <p className="font-inter text-red-700">{passworder}</p>
 
-              {
-                show ? <FaEye onClick={()=> setshow(!show)} className="absolute top-12 right-4 "/>  
-                :<FaEyeSlash onClick={()=> setshow(!show)} className="absolute top-12 right-4"/>
-              }
-
-
-               
-
-
-
+                {show ? (
+                  <FaEye
+                    onClick={() => setshow(!show)}
+                    className="absolute top-12 right-4 "
+                  />
+                ) : (
+                  <FaEyeSlash
+                    onClick={() => setshow(!show)}
+                    className="absolute top-12 right-4"
+                  />
+                )}
               </div>
 
               <div
