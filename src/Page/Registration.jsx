@@ -43,6 +43,9 @@ const Registration = () => {
     if (!password) {
       setpasworder("please enter your password");
     }
+    if(email && password && name && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
+      console.log('regi done');
+    }
     
   };
 
@@ -65,7 +68,7 @@ const Registration = () => {
                   onChange={handleEmail}
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Enter your Email "
-                  type="text"
+                  type="email"
                 />
                 <p className="font-inter text-red-700">{emailer}</p>
               </div>
