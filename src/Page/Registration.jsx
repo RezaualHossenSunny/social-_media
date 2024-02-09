@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../assets/login-animate.gif";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ const Registration = () => {
  
   const [show,setshow]=useState(false);
 
-
+  const auth = getAuth();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -44,7 +45,17 @@ const Registration = () => {
       setpasworder("please enter your password");
     }
     if(email && password && name && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
-      console.log('regi done');
+    
+      createUserWithEmailAndPassword(auth, email, password)
+      .then(()=>{
+        console.log('regi done');
+      })
+      .catch((error)=>{
+        if(error.code.includes('auth/email-already-in-use')){
+          setEmailer('This Email All Redy Used');
+        }
+      
+      })
     }
     
   };
