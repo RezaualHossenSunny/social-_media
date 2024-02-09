@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
+import { ToastContainer, toast } from 'react-toastify';
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -56,9 +57,11 @@ const Registration = () => {
     ) {
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
-          console.log("regi done");
           sendEmailVerification(auth.currentUser).then(() => {
-            console.log('veify your account');
+            toast('registration done veify your account');
+            setEmail('');
+            setName('');
+            setPassword('');
           });
         })
         .catch((error) => {
@@ -71,7 +74,21 @@ const Registration = () => {
 
   return (
     <div>
+    <ToastContainer
+position="top-left"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+
+/>
       <div className="flex">
+      
         <div className="w-2/4 flex justify-end">
           <div className=" mr-14 mt-32">
             <h1 className="font-inter text-3xl font-bold not-italic text-[#32375C]">
@@ -89,6 +106,7 @@ const Registration = () => {
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Enter your Email "
                   type="email"
+                  value={email}
                 />
                 <p className="font-inter text-red-700">{emailer}</p>
               </div>
@@ -100,6 +118,7 @@ const Registration = () => {
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Enter your Password "
                   type="text"
+                  value={name}
                 />
                 <p className="font-inter text-red-700">{nameer}</p>
               </div>
@@ -111,6 +130,7 @@ const Registration = () => {
                   className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] relative "
                   placeholder="Enter your Password "
                   type={show ? "text" : "password"}
+                  value={password}
                 />
 
                 <p className="font-inter text-red-700">{passworder}</p>
