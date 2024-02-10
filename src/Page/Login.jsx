@@ -45,7 +45,7 @@ const Login = () => {
     <div>
       <div className="flex">
         <div className="w-2/4 flex justify-end">
-          <div className=" mr-14 mt-32">
+          <div className=" mr-14 mt-40">
             <h1 className="font-inter text-3xl font-bold not-italic text-[#32375C]">
             Login to your account!
             </h1>

@@ -8,6 +8,7 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from "react-router-dom";
 const Registration = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -156,7 +157,7 @@ theme="dark"
               </div>
               <p className="text-center font-inter mt-6 text-[#03014C] text-base font-normal not-italic">
                 Already have an account ?{" "}
-                <span className="text-[#EA6C00] font-bold"> Sign In</span>
+                <Link to='/login' className="text-[#EA6C00] font-bold"> Sign In</Link>
               </p>
             </div>
           </div>
