@@ -66,7 +66,7 @@ const Registration = () => {
             setName('');
             setPassword('');
            setTimeout(()=>{
-            navigate('/login')
+             navigate('/login')
            },2000)
           });
         })
