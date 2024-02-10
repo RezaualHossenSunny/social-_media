@@ -3,6 +3,8 @@ import logo from "../assets/sign.gif";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
   const [email, setEmail] = useState("");
 
@@ -12,7 +14,7 @@ const Login = () => {
   const [passworder, setpasworder] = useState("");
  
   const [show,setshow]=useState(false);
-
+  const auth = getAuth();
 
 
   const handleEmail = (e) => {
@@ -38,6 +40,32 @@ const Login = () => {
     if (!password) {
       setpasworder("please enter your password");
     }
+
+    if (
+      email &&
+      password &&
+      name &&
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    ) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          sendEmailVerification(auth.currentUser).then(() => {
+            toast('registration done veify your account');
+            setEmail('');
+            setName('');
+            setPassword('');
+           setTimeout(()=>{
+            navigate('/login')
+           },2000)
+          });
+        })
+        .catch((error) => {
+          if (error.code.includes("auth/email-already-in-use")) {
+            setEmailer("This Email All Redy Used");
+          }
+        });
+    }
+  
     
   };
 
@@ -102,7 +130,7 @@ const Login = () => {
               </div>
               <p className="text-center font-inter mt-6 text-[#03014C] text-base font-normal not-italic">
                 Already have an account ?{" "}
-                <span className="text-[#EA6C00] font-bold"> Sign Up</span>
+                <Link to='/' className="text-[#EA6C00] font-bold"> Sign Up</Link>
               </p>
             </div>
           </div>

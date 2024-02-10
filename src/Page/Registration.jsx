@@ -9,7 +9,9 @@ import {
 } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Registration = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -63,6 +65,9 @@ const Registration = () => {
             setEmail('');
             setName('');
             setPassword('');
+           setTimeout(()=>{
+            navigate('/login')
+           },2000)
           });
         })
         .catch((error) => {
