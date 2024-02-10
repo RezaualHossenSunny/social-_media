@@ -10,10 +10,15 @@ import {
 } from "react-router-dom";
 import Registration from './Page/Registration.jsx';
 import Login from './Page/Login.jsx';
+import Home from './Page/Home.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Home/>,
+  },
+  {
+    path: "/registration",
     element: <Registration/>,
   },
   {

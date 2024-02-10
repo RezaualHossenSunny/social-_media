@@ -4,9 +4,14 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
+import {useNavigate,} from "react-router-dom";
+import { GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
+  const navigate = useNavigate();
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth();
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
@@ -15,7 +20,7 @@ const Login = () => {
   const [passworder, setpasworder] = useState("");
 
   const [show, setshow] = useState(false);
-  const auth = getAuth();
+ 
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -52,6 +57,9 @@ signInWithEmailAndPassword(auth, email, password)
     toast.success('Login Sucessfully Done');
     setEmail('');
     setPassword('')
+    setTimeout(()=>{
+    navigate('/')
+    },3000)
    
   
   })
@@ -64,7 +72,20 @@ signInWithEmailAndPassword(auth, email, password)
        
     }
   };
-
+  
+const handleGoole=()=>{
+  signInWithPopup(auth, provider)
+  .then(() => {
+    setTimeout(()=>{
+    navigate('/')
+    },3000)
+ 
+  }).catch((error) => {
+   
+    const errorCode = error.code;
+    console.log(errorCode);
+  });
+}
   return (
     <div>
       <div className="flex">
@@ -86,7 +107,7 @@ theme="colored"
             <h1 className="font-inter text-3xl font-bold not-italic text-[#32375C]">
               Login to your account!
             </h1>
-            <div className="flex cursor-pointer">
+            <div onClick={handleGoole} className="flex cursor-pointer">
               <FcGoogle className="mt-3 text-3xl" />
               <h2 className="font-inter font-bold not-italic text-2xl mt-3 ml-2">
                 Login with Google
