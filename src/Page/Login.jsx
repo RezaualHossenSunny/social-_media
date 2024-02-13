@@ -3,7 +3,7 @@ import logo from "../assets/sign.gif";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import {useNavigate,} from "react-router-dom";
@@ -61,7 +61,8 @@ signInWithEmailAndPassword(auth, email, password)
     toast.success('Login Sucessfully Done');
     setEmail('');
     setPassword('')
-    dispatch(userLogininfo(user.user))
+    dispatch(userLogininfo(user.user));
+    localStorage.setItem('userLogininfo',JSON.stringify(userLogininfo(user)))
     setTimeout(()=>{
     navigate('/')
     },3000)
