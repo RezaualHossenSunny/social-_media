@@ -8,7 +8,10 @@ import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/a
 import { ToastContainer, toast } from 'react-toastify';
 import {useNavigate,} from "react-router-dom";
 import { GoogleAuthProvider } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { userLogininfo } from "../Slices/Userslice";
 const Login = () => {
+  const dispatch =useDispatch()
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
@@ -52,11 +55,13 @@ const Login = () => {
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
     ) {
 signInWithEmailAndPassword(auth, email, password)
-  .then(() => {
+  .then((user) => {
+    console.log(user.user);
     // Signed in 
     toast.success('Login Sucessfully Done');
     setEmail('');
     setPassword('')
+    dispatch(userLogininfo(user.user))
     setTimeout(()=>{
     navigate('/')
     },3000)
@@ -160,7 +165,7 @@ theme="colored"
               </div>
               <p className="text-center font-inter mt-6 text-[#03014C] text-base font-normal not-italic">
                 Already have an account ?{" "}
-                <Link to="/" className="text-[#EA6C00] font-bold">
+                <Link to="/registration" className="text-[#EA6C00] font-bold">
                   {" "}
                   Sign Up
                 </Link>
