@@ -108,14 +108,14 @@ pauseOnHover
 theme="colored"
 
 />
-        <div className="w-2/4 flex justify-end">
-          <div className=" mr-14 mt-40">
+        <div className="w-full xl:w-2/4 xl:flex xl:justify-end">
+          <div className=" mr-1 md:mr-14 mt-12 md:mt-40">
             <h1 className="font-inter text-3xl font-bold not-italic text-[#32375C]">
               Login to your account!
             </h1>
             <div onClick={handleGoole} className="flex cursor-pointer">
-              <FcGoogle className="mt-3 text-3xl" />
-              <h2 className="font-inter font-bold not-italic text-2xl mt-3 ml-2">
+              <FcGoogle className="mt-3 text-2xl md:text-3xl" />
+              <h2 className="font-inter font-bold not-italic text-xl md:text-2xl mt-3 ml-2">
                 Login with Google
               </h2>
             </div>
@@ -125,7 +125,7 @@ theme="colored"
                 <p className="font-inter ml-2">Email</p>
                 <input
                   onChange={handleEmail}
-                  className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
+                  className=" w-full xl:w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Youraddres@email.com "
                   type="email"
                   value={email}
@@ -137,7 +137,7 @@ theme="colored"
                 <p className="font-inter ml-2 mt-6 ">Password</p>
                 <input
                   onChange={handlepasswoord}
-                  className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] relative "
+                  className=" w-full xl:w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] relative "
                   placeholder="Enter your Password "
                   type={show ? "text" : "password"}
                   value={password}
@@ -160,7 +160,7 @@ theme="colored"
 
               <div
                 onClick={handlesubmit}
-                className="font-inter  text-2xl font-semibold bg-[#32375C] text-white py-5 text-center rounded-[86px] mt-6 cursor-pointer"
+                className="font-inter text-1xl md:text-2xl font-semibold bg-[#32375C] text-white py-5 text-center rounded-[86px] mt-6 cursor-pointer"
               >
                 Login to Continue
               </div>
@@ -175,7 +175,7 @@ theme="colored"
           </div>
         </div>
 
-        <div className="w-2/4 ">
+        <div className=" xl:w-2/4 xl:flex hidden ">
           <img className="h-screen object-cover" src={logo} />
         </div>
       </div>
