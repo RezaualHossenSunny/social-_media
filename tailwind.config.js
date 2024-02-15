@@ -9,7 +9,10 @@ export default {
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
       
-      }
+      },
+      colors: {
+        'comon': '#5F35F5',
+      },
     },
   },
   plugins: [],
