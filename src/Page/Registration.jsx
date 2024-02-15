@@ -93,14 +93,14 @@ pauseOnHover
 theme="dark"
 
 />
-      <div className="flex">
+      <div className=" md:flex">
       
-        <div className="w-2/4 flex justify-end">
-          <div className=" mr-14 mt-32">
-            <h1 className="font-inter text-3xl font-bold not-italic text-[#32375C]">
+        <div className="w-full lg:w-2/4 xl:flex xl:justify-end">
+          <div className=" md:mr-14 mt-4 md:mt-32">
+            <h1 className="font-inter text-2xl md:text-3xl font-bold not-italic text-[#32375C]">
               Welcome To Social Media
             </h1>
-            <h2 className="font-inter font-bold not-italic text-2xl mt-3">
+            <h2 className="font-inter font-bold not-italic text-xl md:text-2xl mt-3">
               Log In
             </h2>
 
@@ -109,7 +109,7 @@ theme="dark"
                 <p className="font-inter ml-2">Email</p>
                 <input
                   onChange={handleEmail}
-                  className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
+                  className="w-full lg:w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Enter your Email "
                   type="email"
                   value={email}
@@ -121,7 +121,7 @@ theme="dark"
                 <p className="font-inter ml-2 mt-6">Full Name</p>
                 <input
                   onChange={handlname}
-                  className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
+                  className="w-full lg:w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] "
                   placeholder="Enter your Password "
                   type="text"
                   value={name}
@@ -133,7 +133,7 @@ theme="dark"
                 <p className="font-inter ml-2 mt-6 ">Password</p>
                 <input
                   onChange={handlepasswoord}
-                  className="w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] relative "
+                  className="w-full lg:w-[492px] py-4 px-1 rounded-md  border border-2 border-[#808080] relative "
                   placeholder="Enter your Password "
                   type={show ? "text" : "password"}
                   value={password}
@@ -156,7 +156,7 @@ theme="dark"
 
               <div
                 onClick={handlesubmit}
-                className="font-inter  text-2xl font-semibold bg-[#32375C] text-white py-5 text-center rounded-[86px] mt-6 cursor-pointer"
+                className="font-inter  text-xl md:text-2xl font-semibold bg-[#32375C] text-white py-5 text-center rounded-[86px] mt-6 cursor-pointer"
               >
                 Sign up
               </div>
@@ -168,7 +168,7 @@ theme="dark"
           </div>
         </div>
 
-        <div className="w-2/4 ">
+        <div className=" w-0 lg:w-2/4 xl:flex hidden ">
           <img className="h-screen object-cover" src={logo} />
         </div>
       </div>
