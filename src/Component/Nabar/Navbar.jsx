@@ -4,7 +4,24 @@ import { FaHome,FaFacebookMessenger  } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import { IoSettings } from "react-icons/io5";
 import { CiLogin } from "react-icons/ci";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userLogininfo } from "../../Slices/Userslice";
 const Navbar = () => {
+  const auth = getAuth();
+  const navigate= useNavigate();
+  const dispatch =useDispatch();
+
+  const handlelogout =()=>{
+    signOut(auth).then(() => {
+      dispatch(userLogininfo(null));
+      localStorage.removeItem('userLogininfo');
+      navigate('/login')
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
   return (
     <div>
       <div className="bg-comon h-[763px] rounded-lg">
@@ -25,7 +42,7 @@ const Navbar = () => {
         </div>
 
         <div className='relative pt-5 pb-[25px] mt-4 '>
-          <CiLogin      className="mx-auto text-5xl font-bold  text-white text-center" />
+          <CiLogin onClick={handlelogout} className="mx-auto text-5xl font-bold  text-white text-center" />
         </div>
       </div>
     </div>
